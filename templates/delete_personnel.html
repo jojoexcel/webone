@@ -9,21 +9,21 @@
     <title>Edit Personnel</title>
 </head>
 <body>
-    <h1>Edit Personnel</h1>
-    <form action="{{ url_for('edit_personnel', personnel_id=personnel[0]) }}" method="post">
+    <h1>delete Personnel</h1>
+    <form action="{{ url_for('delete_personnel', personnel_id=personnel[0]) }}" method="post">
         <label for="name">Name:</label>
-        <input type="text" name="name" value="{{ personnel[1] }}" required><br>
+        <input  type="text" name="name" value="{{ personnel[1] }}" required><br>
         <label for="phone">Phone:</label>
-        <input type="text" name="phone" value="{{ personnel[2] }}"><br>
+        <input  type="text" name="phone" value="{{ personnel[2] }}"><br>
         <label for="mobile">Mobile:</label>
-        <input type="text" name="mobile" value="{{ personnel[3] }}" required><br>
-        <button type="submit">Update</button>
+        <input  type="text" name="mobile" value="{{ personnel[3] }}" required><br>
+        <button type="submit">delete</button>
     </form>
     <!-- Add a button to trigger the deletion -->
 
     <a href="{{ url_for('index') }}">Back to Personnel List</a>
 
-
-
+    <!-- Reference the JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

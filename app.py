@@ -37,6 +37,32 @@ def index():
     return render_template('index.html', personnel_list=personnel_list)
 
 
+# Modify the route to handle deletion directly
+
+
+@app.route('/', methods=['POST'])
+def handle_actions():
+    if request.form.get('action') == 'delete':
+        # Delete personnel record
+        personnel_id = request.form.get('personnel_id')
+        if personnel_id:
+            conn = sqlite3.connect('example.db')
+            cursor = conn.cursor()
+            cursor.execute('DELETE FROM personnel WHERE id=?', (personnel_id,))
+            conn.commit()
+            cursor.close()
+            return redirect(url_for('index'))
+    # elif request.form.get('action') == 'edit':  # 修改這裡的條件
+    #     # Handle 'edit' action
+    #     personnel_id = request.form.get('personnel_id')
+    #     # 其他處理 'edit' 操作的邏輯...
+    #     cursor.execute('SELECT * FROM personnel WHERE id=?', (personnel_id,))
+    #     personnel = cursor.fetchone()
+    #     cursor.close()
+    #     return render_template('edit_personnel.html', personnel=personnel)
+    # Redirect back to the index page after handling the action
+
+
 @app.route('/add_personnel', methods=['GET', 'POST'])
 def add_personnel():
     if request.method == 'POST':
@@ -85,6 +111,23 @@ def edit_personnel(personnel_id):
         cursor.close()
 
         return render_template('edit_personnel.html', personnel=personnel)
+
+
+@app.route('/delete_personnel/<int:personnel_id>', methods=['GET', 'POST'])
+def delete_personnel(personnel_id):
+    conn = sqlite3.connect('example.db')
+    cursor = conn.cursor()
+    if request.method == 'POST':
+        cursor.execute('DELETE FROM personnel WHERE id=?', (personnel_id,))
+        conn.commit()
+        cursor.close()
+        return redirect(url_for('index'))
+    else:
+        # 取得原始人員資料
+        cursor.execute('SELECT * FROM personnel WHERE id=?', (personnel_id,))
+        personnel = cursor.fetchone()
+        cursor.close()
+        return render_template('delete_personnel.html', personnel=personnel)
 
 
 if __name__ == '__main__':
