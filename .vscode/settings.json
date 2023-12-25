@@ -1,0 +1,23 @@
+{
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnType": true,
+    "editor.mouseWheelZoom": true,
+    "files.autoSave": "onFocusChange", // 失焦自動儲存
+    "files.trimTrailingWhitespace": true, // 儲存的時候，會幫你自動過濾多餘的空格
+    "files.autoGuessEncoding": false, // 是否自動猜測檔案的編碼
+    "window.zoomLevel": 1, // 視窗縮放程度
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.colorCustomizations": {
+        // 層級括號顏色，從 1 至 6 層，此處只設定了 5 層
+        "editorBracketHighlight.foreground1": "#7777ff",
+        "editorBracketHighlight.foreground2": "#8a2be2",
+        "editorBracketHighlight.foreground3": "#DC143C",
+        "editorBracketHighlight.foreground4": "#5eaaa8",
+        "editorBracketHighlight.foreground5": "#800080",
+        // 異常括號的顏色，比如多出來的結尾括號
+        "editorBracketHighlight.unexpectedBracket.foreground": "#ffffff",
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "editor.guides.indentation": true,
+}

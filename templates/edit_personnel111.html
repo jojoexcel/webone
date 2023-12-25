@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Personnel</title>
+</head>
+<body>
+    <h1>Edit Personnel</h1>
+    <form id="editForm" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="personnel.name" required><br>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value="personnel.phone"><br>
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" required value="personnel.mobile"><br>
+        <button type="button" onclick="updatePersonnel()">Update</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Personnel List</a>
+
+    <script>
+        // 從伺服器獲取人員資訊
+        async function getPersonnelInfo() {
+            const response = await fetch("{{ url_for('edit_personnel', personnel_id=personnel_id) }}");
+            const personnel = await response.json();
+            console.log(personnel.name)
+            // 將人員資訊填入表單
+            document.getElementById("name").value = personnel.name;
+            document.getElementById("phone").value = personnel.phone;
+            document.getElementById("mobile").value = personnel.mobile;
+        }
+
+        // 在頁面載入時呼叫
+        document.addEventListener("DOMContentLoaded", function () {
+            getPersonnelInfo();
+        });
+
+        // 更新人員資訊
+        async function updatePersonnel() {
+            const form = document.getElementById("editForm");
+            const formData = new FormData(form);
+
+            await fetch("{{ url_for('update_personnel', personnel_id=personnel_id) }}", {
+                method: "POST",
+                body: formData
+            });
+
+            // 返回人員列表
+            window.location.href = "{{ url_for('index') }}";
+        }
+    </script>
+</body>
+</html>
+
