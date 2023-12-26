@@ -25,45 +25,55 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Personnel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
 
-   <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script>
    -->
-
-</head>
-<body>
+  </head>
+  <body>
     <h1>Personnel List</h1>
-        <ul >
-            <table border ="1" cellpadding="0" cellspacing="0" >
-                <th> 姓名 </th><th> 電話 </th><th> 手機 </th><th> EDIT </th><th> Delete </th>
-                {% for person in personnel_list %}
-                <tr>
-                  <td>{{ person[1] }}</td>
-                  <td>{{ person[2] }}</td>
-                  <td>{{ person[3] }}</td>
-                  <td>
-                    <a href="{{ url_for('edit_personnel', personnel_id=person[0]) }}">Edit</a>
-                  </td>
-                  <td>
-                    <form method="post" action="{{ url_for('handle_actions') }}">
-                       <input type="hidden" name="personnel_id" value="{{ person[0] }}">
-                       <input type="hidden" name="action" value="delete">
-                       <button type="submit" class="form button.delete-btn">Delete</button>
-                    </form>
-                </td>
-               </tr>
-             {% endfor %}
-          </table>
-       </form>
+    <ul>
+      <table border="1" cellpadding="0" cellspacing="0" class="centered-table">
+        <th>姓名</th>
+        <th>電話</th>
+        <th>手機</th>
+        <th>EDIT</th>
+        <th>Delete</th>
+        {% for person in personnel_list %}
+        <tr>
+          <td>{{ person[1] }}</td>
+          <td>{{ person[2] }}</td>
+          <td>{{ person[3] }}</td>
+          <td>
+            <a href="{{ url_for('edit_personnel', personnel_id=person[0]) }}"
+              >Edit</a
+            >
+          </td>
+          <td>
+            <form method="post" action="{{ url_for('handle_actions') }}">
+              <input
+                type="hidden"
+                name="personnel_id"
+                value="{{ person[0] }}"
+              />
+              <input type="hidden" name="action" value="delete" />
+              <button type="submit" class="delete-btn">
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
     </ul>
     <a href="{{ url_for('add_personnel') }}">Add Personnel</a>
-
-
-</body>
+  </body>
 </html>

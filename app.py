@@ -20,7 +20,7 @@ cursor.execute(
     )
 '''
 )
-conn.commit()
+conn.commit()  # 執行SQL
 
 # 關閉游標
 cursor.close()
