@@ -1,7 +1,7 @@
 {
   "editor.formatOnType": true,
   "editor.mouseWheelZoom": true, // 視窗縮放
-  "editor.fontSize": 16,
+  "editor.fontSize": 14,
   "editor.unicodeHighlight.nonBasicASCII": false,
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
@@ -24,13 +24,16 @@
     "editorBracketHighlight.unexpectedBracket.foreground": "#ffffff"
   },
   "workbench.editor.enablePreview": false,
-  "window.zoomLevel": 2, // 視窗縮放程度
+  "window.zoomLevel": 1.2, // 視窗縮放程度
   "black-formatter.args": ["--line-length=100", "--skip-string-normalization"],
   "flake8.args": ["--max-line-length=100", "--ignore=E131,E302"],
+  // "python.linting.flake8Enabled": true,
+  // "python.linting.flake8Args": ["--max-line-length=100", "--ignore=E131,E302"],
   "isort.args": ["--src=${workspaceFolder}", "--line-length=100"],
   "isort.check": true,
   // "terminal.integrated.defaultProfile.windows": "Command Prompt",
   "terminal.integrated.defaultProfile.windows": "Cmder",
+  "python.terminal.integrated.focusOnRun": "true",
   "terminal.integrated.profiles.windows": {
     "Cmder": {
       "name": "Cmder",

@@ -1,13 +1,13 @@
-"""
 import os
 
 os.system("cls")
+y = int(input("請輸入2-10之間的數字： "))  # Convert input to an integer
+x = list(range(1, y + 1))  # Generate a list of numbers from 1 to y
+print(x[0:3])  # Print the first three elements of the list
 
-x = list(range(5, 10))
-print(x[1:3])
 for i in x:
-    print(i)
-"""
+    print(i)  # Print each element in the list
+
 
 """
 sid = "9A435879"

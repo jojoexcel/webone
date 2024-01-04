@@ -1,5 +1,4 @@
 import sqlite3
-
 from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
@@ -74,7 +73,8 @@ def add_personnel():
         conn = sqlite3.connect('example.db')
         cursor = conn.cursor()
         cursor.execute(
-            'INSERT INTO personnel (name, phone, mobile) VALUES (?, ?, ?)', (name, phone, mobile)
+            'INSERT INTO personnel (name, phone, mobile) VALUES (?, ?, ?)',
+            (name, phone, mobile),
         )
         conn.commit()
         cursor.close()
@@ -131,4 +131,10 @@ def delete_personnel(personnel_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="127.0.0.1", debug=True)  # 本機測拭
+    # app.run(host="0.0.0.0", debug=True)  #測拭（本機IP：5000）
+    # app.run(host="0.0.0.0")  #正式
+
+
+# bash --
+# waitress-serve --host=0.0.0.0 --port=5000 app:app
